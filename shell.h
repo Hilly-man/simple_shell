@@ -1,4 +1,5 @@
-#ifndef SHELL_H
+#
+fndef SHELL_H
 #define SHELL_H
 
 /* FUNCTION HEADERS */
@@ -33,5 +34,8 @@ void fork_it(char *pathname, char **av, char **args);
 void exit_shell(char *buff_rd, char **av, char **args);
 void print_env(void);
 void env_print(char **av, char **args);
-
+int _cd(info_t *);
+int _showHelp(info_t *);
+int _myhistory(info_t *);
+int _myalias(info_t *);
 #endif
