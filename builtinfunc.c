@@ -1,10 +1,39 @@
 #include "shell.h"
+
 /**
- * _cd- Change the current directory of the shell process.
+ * _myexit - exits shell
+ * @info: Structure containing potential arguments
+ * Return: exits with a particular exit status
+ * (0) if info.argv[0] is not equles "exit"
+ */
+int _myexit(info_t *info)
+{
+	int exitcheck;
+
+	if (info->argv[1])
+	{
+		exitcheck = _erratoi(info->argv[1]);
+		if (exitcheck == -1)
+		{
+			info->status = 2;
+			print_error(info, "Illegal number: ");
+			_eputs(info->argv[1]);
+			_eputchar('\n');
+			return (1);
+		}
+		info->err_num = _erratoi(info->argv[1]);
+		return (-2);
+	}
+	info->err_num = -1;
+	return (-2);
+}
+
+/**
+ * _mycd - change current working directory of the process
  * @info: Structure containing potential arguments.
  * Return: Always 0
  */
-int _cd(info_t *info)
+int _mycd(info_t *info)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -47,12 +76,13 @@ int _cd(info_t *info)
 	}
 	return (0);
 }
+
 /**
- * _showHelp- Display help information (not yet implemented).
+ * _myhelp - change the current directory
  * @info: Structure containing potential arguments.
  * Return: Always 0
  */
-int _showHelp(info_t *info)
+int _myhelp(info_t *info)
 {
 	char **arg_array;
 

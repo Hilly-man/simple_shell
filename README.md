@@ -1,1 +1,1 @@
-simple_shell peer project
+This is a simple shell peer project done by Hilkiah and Isa
